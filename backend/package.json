@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "@supabase/supabase-js": "^2.39.7",
     "cors": "^2.8.5",
     "eneba-inter": "file:..",
