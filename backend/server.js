@@ -12,9 +12,20 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+
 // Import routes
 const gameKeysRoutes = require('./src/routes/gameKeysRoutes');
 app.use('/', gameKeysRoutes);
+
+const path = require('path');
+if(process.env.NODE_ENV === 'production'){
+  // Serve static files from React build
+  app.use(express.static(path.join(__dirname, '../frontend/my-app/dist')));
+  // SPA fallback: serve index.html for any unknown route
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/my-app/dist/index.html'));
+  });
+}
 
 const supabase = require('./src/config/supabase');
 app.listen(port, async () => {

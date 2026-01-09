@@ -1,0 +1,21 @@
+{
+  "name": "eneba-inter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix frontend/my-app && npm install --prefix backend && npm run build --prefix frontend/my-app && npm run build --prefix frontend/my-app",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaidas-code/Eneba_Internship_Task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vaidas-code/Eneba_Internship_Task/issues"
+  },
+  "homepage": "https://github.com/Vaidas-code/Eneba_Internship_Task#readme"
+}
