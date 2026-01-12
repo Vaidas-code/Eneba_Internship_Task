@@ -1,13 +1,8 @@
-// NOTE: Never write code here, just add it
-
 import './App.css'
 import Header from './components/Header/Header'
 import ResultsCount from './components/ResultsCount/ResultsCount'
 import ProductGrid from './components/ProductGrid/ProductGrid'
 import { useEffect, useState } from 'react'
-
-
-
 
 function App() {
   const [products, setProducts] = useState([])
@@ -24,8 +19,8 @@ function App() {
     const params = new URLSearchParams(searchParam);
     const search = params.get('search') || '';
     const url = search
-      ? `http://localhost:3000/list?search=${encodeURIComponent(search)}`
-      : 'http://localhost:3000/list';
+      ? `/list?search=${encodeURIComponent(search)}`
+      : '/list';
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
