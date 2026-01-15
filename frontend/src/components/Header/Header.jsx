@@ -1,74 +1,109 @@
-import './Header.css'
 import SearchInput from '../SearchInput/SearchInput'
+
+const LOGO_URL = 'https://static.eneba.games/branding/v2/logoFull.svg'
+const FLAG_URL = 'https://static.eneba.games/flags/lang/v2/lithuania.svg'
+const AVATAR_URL = 'https://www.eneba.com/avatars/enebian-60f994ae47e48'
+
+function HeartIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 text-white" fill="none">
+      <path
+        d="M12,21.844l-9.588-10A5.672,5.672,0,0,1,1.349,5.293h0a5.673,5.673,0,0,1,9.085-1.474L12,5.384l1.566-1.565a5.673,5.673,0,0,1,9.085,1.474h0a5.673,5.673,0,0,1-1.062,6.548Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function CartIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="w-6 h-6 text-white" fill="none">
+      <path d="M12 12.75H5.386a1 1 0 01-.986-.833L2.642 1.584a1 1 0 00-.986-.832H1" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="10.75" cy="14.5" r="0.25" stroke="currentColor" />
+      <circle cx="5.75" cy="14.5" r="0.25" stroke="currentColor" />
+      <path d="M4.031 9.75h8.047a1.5 1.5 0 001.44-1.082l.967-3.867a.5.5 0 00-.485-.627H3.011" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function Logo() {
+  return (
+    <a href="/" title="Eneba" aria-label="Eneba" className="flex-shrink-0">
+      <img src={LOGO_URL} alt="Eneba logo" className="h-8" decoding="async" />
+    </a>
+  )
+}
+
+function LanguageSelector() {
+  return (
+    <button
+      type="button"
+      title="Settings"
+      aria-label="Settings"
+      className="h-12 px-4 flex items-center gap-2 bg-transparent hover:text-yellow-400 transition-colors"
+    >
+      <img src={FLAG_URL} alt="lithuania" width="16" height="16" />
+      <span className="flex items-center gap-1 text-white text-sm">
+        <span>English</span>
+        <span>EU |</span>
+        <span>EUR</span>
+      </span>
+    </button>
+  )
+}
+
+function IconButton({ icon, label, disabled = false, className = '' }) {
+  return (
+    <button
+      type="button"
+      title={label}
+      aria-label={label}
+      disabled={disabled}
+      className={`p-0 bg-transparent border-none transition-opacity hover:opacity-80 disabled:cursor-default disabled:opacity-50 ${className}`}
+    >
+      {icon}
+    </button>
+  )
+}
+
+function UserAvatar() {
+  return (
+    <button
+      type="button"
+      title="Profile"
+      aria-label="Profile"
+      className="flex items-center justify-center w-10 h-10 bg-transparent border-none rounded-full p-0 cursor-pointer hover:opacity-80 transition-opacity"
+    >
+      <img
+        src={AVATAR_URL}
+        alt="User avatar"
+        className="w-8 h-8 rounded-full border border-white"
+      />
+    </button>
+  )
+}
 
 export default function Header() {
   return (
-    <header className="h2DMqW app-header">
-      <div className="VZWwFk header-inner">
-        <a className="jfM2eM logo-link" href="/list/" title="Eneba" aria-label="Eneba">
-          <img src="https://static.eneba.games/branding/v2/logoFull.svg" alt="Eneba logo" decoding="async" />
-        </a>
-
-        <div className="header-search-lang-row">
-          <form className="TbbCET" action="/list/store/all" style={{display:'flex',alignItems:'center'}}>
-            <div className="search-svg-wrapper">
-              <SearchInput />
-            </div>
-            <button className="IrsXHn P9RW96 w6wAha lang-button" title="Nustatymai" aria-label="Nustatymai" type="button" style={{marginLeft:'8px'}}>
-              <span>
-                <span className="W_jtsk">
-                  <img src="https://static.eneba.games/flags/lang/v2/lithuania.svg" alt="lithuania" height="16" width="16" />
-                </span>
-              </span>
-              <span>
-                <span className="CWVp7R">
-                  <span>English</span>
-                  <span className="E2fm8y">EU |</span>
-                  <span className="hpg3x5">EUR</span>
-                </span>
-              </span>
-            </button>
+    <header className="w-full">
+      <div className="flex items-center justify-between gap-4 py-4">
+        <div className="flex items-center gap-4">
+          <Logo />
+          <form className="flex items-center w-[500px]" action="/">
+            <SearchInput />
           </form>
+          <LanguageSelector />
         </div>
 
-        <div className="header-icons">
-          <button className="Cm8Xkx" aria-label="Norų sąrašas" title="Norų sąrašas" type="button" style={{background:'none',border:'none',padding:0,cursor:'default'}} disabled>
-            <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" strokeWidth="1.5" style={{maxWidth:'24px', minWidth:'24px', height:'auto'}}>
-              <path d="M12,21.844l-9.588-10A5.672,5.672,0,0,1,1.349,5.293h0a5.673,5.673,0,0,1,9.085-1.474L12,5.384l1.566-1.565a5.673,5.673,0,0,1,9.085,1.474h0a5.673,5.673,0,0,1-1.062,6.548Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
-          </button>
-          <button type="button" className="HWYfxM" aria-label="Mano pirkinių krepšelis" title="Mano pirkinių krepšelis">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{maxWidth:'24px', minWidth:'24px', height:'auto'}}>
-              <path d="M12 12.7499H5.386C5.1498 12.75 4.9212 12.6664 4.74067 12.5139C4.5602 12.3615 4.43953 12.1502 4.4 11.9173L2.642 1.58395C2.60233 1.35119 2.4816 1.13996 2.30113 0.987686C2.12067 0.835406 1.89213 0.7519 1.656 0.751953H1" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-              <path d="M10.75 14.75C10.8881 14.75 11 14.6381 11 14.5C11 14.3619 10.8881 14.25 10.75 14.25" stroke="currentColor"></path>
-              <path d="M10.75 14.75C10.6119 14.75 10.5 14.6381 10.5 14.5C10.5 14.3619 10.6119 14.25 10.75 14.25" stroke="currentColor"></path>
-              <path d="M5.75 14.75C5.88807 14.75 6 14.6381 6 14.5C6 14.3619 5.88807 14.25 5.75 14.25" stroke="currentColor"></path>
-              <path d="M5.75 14.75C5.61193 14.75 5.5 14.6381 5.5 14.5C5.5 14.3619 5.61193 14.25 5.75 14.25" stroke="currentColor"></path>
-              <path d="M4.03141 9.75007H12.0787C12.5247 9.75001 12.9578 9.60094 13.3093 9.32647C13.6608 9.05207 13.9105 8.66801 14.0187 8.23541L14.9854 4.36873C15.0038 4.29499 15.0052 4.21802 14.9895 4.14366C14.9737 4.0693 14.9412 3.99952 14.8944 3.93961C14.8476 3.87971 14.7878 3.83126 14.7194 3.79795C14.6511 3.76465 14.5761 3.74736 14.5001 3.7474H3.01075" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
-          </button>
-          <button type="button" className="profile-btn" aria-label="Profilis" title="Profilis">
-            <img
-              src="https://www.eneba.com/avatars/enebian-60f994ae47e48"
-              alt="User avatar"
-              className="header-avatar"
-              tabIndex={0}
-            />
-          </button>
-        </div>
-
-        <div className="CnCqo4">
-          <div className="IdNVkT">
-            <div className="LK3Lbs">
-            </div>
-          </div>
+        <div className="flex items-center gap-4 pl-4">
+          <IconButton icon={<HeartIcon />} label="Wishlist" />
+          <IconButton icon={<CartIcon />} label="Shopping Cart" />
+          <UserAvatar />
         </div>
       </div>
-
-
-
-
-      <div className="BEd3lu"><nav className="JjgYZ4"><ul className="osK4dT d3kAJw P8rtGW l0hbuc"></ul></nav></div> 
     </header>
   )
 }

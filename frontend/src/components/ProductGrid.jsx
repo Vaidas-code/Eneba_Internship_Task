@@ -15,7 +15,7 @@ export default function ProductGrid() {
           region: item.region,
           "product-media-img": item.imageUrl,
           originalPrice: item.price,
-          discountPrice: item.cashbackPrice,
+          discountPrice: item.cashbackPrice ?? item.price,
           currency: '€',
           hasCashback: !!item.cashbackAmmount,
           cashback: item.cashbackAmmount,

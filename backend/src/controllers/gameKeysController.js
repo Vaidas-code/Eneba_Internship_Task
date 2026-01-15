@@ -10,17 +10,19 @@ exports.listGameKeys = async (req, res) => {
     } else {
       data = await getAllGameKeys();
     }
-    res.json({ data });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
-exports.incrementLikeCount = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const updated = await incrementLikeCountById(id);
-    res.json({ success: true, data: updated });
+    const processedData = data.map(item => {
+      const cashbackPrice = item.cashbackPercent ? (item.price * (1 - item.cashbackPercent / 100)) : null;
+      const cashbackAmmount = cashbackPrice ? cashbackPrice * 0.11 : 0;
+      
+      return {
+        ...item,
+        cashbackPrice,
+        cashbackAmmount
+      };
+    });
+    
+    res.json({ data: processedData });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
